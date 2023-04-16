@@ -1,17 +1,17 @@
 import '../assets/css/detalle.css';
+import profile from "../json/profile.json"
 
 function DetalleUsuario() {
-    return (
-      <div className='container text-center mt-5 pt-5'>
-        <img src="https://picsum.photos/500/500" className="rounded-circle" alt="Cinque Terre" /> 
-        <p className='mt-4'><b>@alex</b></p>
-        <p className='container'>Lorem ipsum dolor sit amet consectetur <br />
-          adipisicing elit. Est, commodi vel possimus <br />
-          repellat molestias suscipit nobis libero <br />
-          eaque doloremque aut blanditiis voluptas.</p>
-      </div>
-    );
-  }
+
+  return (
+    <div className='container text-center mt-5 pt-5'>
+      <img src={profile.avatar} className="rounded-circle" alt="Cinque Terre" /> 
+      <p className='mt-4'><b>@{profile.username}</b></p>
+      <p className='container'>{profile.bio}</p>
+    </div>
+  );
+
+}
   
 export default DetalleUsuario;
   

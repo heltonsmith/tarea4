@@ -5,6 +5,6 @@ export function getPosts(){
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(data.posteos)
-        }, Math.random() * 3000)
+        }, Math.random() * 2000)
     })
 }

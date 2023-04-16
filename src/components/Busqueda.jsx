@@ -1,22 +1,24 @@
 
 import '../assets/css/busqueda.css';
 
-function Busqueda(props) {
-    const handleSearchTextChange = (event) => {
-      props.onSearchTextChange(event.target.value);
-    };
-  
+function Busqueda({cambiarBusqueda}) {
+
+    const cambiarTexto = (event) => {
+      cambiarBusqueda(event.target.value);
+    }
+
     return (
       <div className="container mt-2">
         <input
           className="form-control"
           type="text"
-          placeholder="El filtro lo hice con filtro de usuarios"
+          placeholder="Search"
           aria-label="Search"
-          onChange={handleSearchTextChange}
+          onChange={cambiarTexto}
         />
       </div>
     );
+
 }
   
 export default Busqueda;

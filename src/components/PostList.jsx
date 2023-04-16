@@ -1,65 +1,79 @@
 
-import { useState, useEffect } from "react";
-import { getPosts } from "../services/PostServices";
 import Post from "./Post";
-import Busqueda from "./Busqueda";
+import Busqueda from './Busqueda';
+import { useEffect, useState } from "react";
+import { getPosts } from "../services/PostServices";
 
-function PostList() {
-    const [posts, setPosts] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [searchText, setSearchText] = useState("");
-  
-    console.log("PostList Render");
-    console.log("Get Posts");
-  
-    useEffect(() => {
-      console.log("PostList Mount");
-      setIsLoading(true);
-      try {
-        getPosts()
-          .then((data) => {
-            setPosts(data);
-          })
-          .catch((error) => {
-            // Manejar el error si es necesario
-          })
-          .finally(() => {
-            setIsLoading(false);
-          });
-      } catch (error) {
-        // Manejar el error si es necesario
-        setIsLoading(false);
-      }
-    }, []);
-  
-    const handleSearchTextChange = (newSearchText) => {
-      setSearchText(newSearchText);
-    };
-  
-    const filteredPosts = searchText
-      ? posts.filter((post) => post.us.includes(searchText))
-      : posts;
-  
+function PostList() { 
+  const [posts, setPosts] = useState([])
+  const [cargando, setCargando] = useState(0)
+  const [busqueda, setBusqueda] = useState("")
+
+  useEffect(() => {
+    getPosts().then(data => {
+      setCargando(0)
+      setPosts(data)
+    })
+    .finally(() => {
+      setCargando(1);
+    })
+  }, [])
+
+  //funcion cuando estoy escribiendo cambia el estado
+  const cambiarBusqueda = (nuevaBusqueda) => {
+    setBusqueda(nuevaBusqueda.trim().toLowerCase());
+  };
+
+  //array que tendrá elementos filtrados
+  const postFiltrados = busqueda
+    ? posts.filter(
+        (post) => 
+          post.texto
+          .toLowerCase()
+          .includes(busqueda)
+      )
+    : posts;
+
+
+  if(cargando === 0){
     return (
-      <>
-        <Busqueda onSearchTextChange={handleSearchTextChange} />
-        <div>
-          {isLoading ? (
-            <div className="d-flex justify-content-center mt-5 pt-5">
-              <div className="spinner-border mt-5" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
-            </div>
-          ) : filteredPosts.length > 0 ? (
-            filteredPosts.map((post, i) => (
-              <Post key={i} idu={post.id} username={post.us} texto={post.texto} />
-            ))
-          ) : (
-            <p>No se encontraron resultados.</p>
-          )}
+      <div className="d-flex justify-content-center mt-5 pt-5">
+        <div className="spinner-border mt-5" role="status">
+          <span className="visually-hidden">Loading...</span>
         </div>
-      </>
-    );
+      </div>
+    )
+  }
+
+  if(postFiltrados.length > 0){
+    return (
+      <div>
+        <Busqueda cambiarBusqueda={cambiarBusqueda} />
+        {
+          postFiltrados
+          .map((post, i) => (
+            <Post 
+            key={i} 
+            id={post.id}
+            us={post.us}
+            img={post.img}
+            texto={post.texto}
+            comm={post.comm}
+            />
+          ))
+        }
+      </div>
+    )
+  }
+  else{
+    return (
+      <div>
+        <Busqueda cambiarBusqueda={cambiarBusqueda} />
+        <h4 className="text-center mt-5 pt-5">No se encontraron resultados.</h4>
+      </div>
+    )
+  }
+
 }
    
 export default PostList;

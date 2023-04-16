@@ -8,25 +8,21 @@ import DetalleUsuario from './components/DetalleUsuario';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 function App() {
-  const [mostrarDetalle, setMostrarDetalle] = useState(false);
 
-  function handleClick(icono) {
-    console.log('Icono presionado:', icono);
-    if (icono === 'detalle') {
-      setMostrarDetalle(true);
-    } else {
-      setMostrarDetalle(false);
-    }
+  const [botonBarra, setBotonBarra] = useState(0)
+
+  const cambiarBotonBarra = (x) => {
+    setBotonBarra(x)
   }
 
   return (
-    <React.StrictMode>
-      <Barra handleClick={handleClick} />
-      {
-        mostrarDetalle ? <DetalleUsuario /> : <PostList />
-      }
-    </React.StrictMode>
-  );
+    <>
+      <Barra botonBarra={botonBarra} cambiarBotonBarra={cambiarBotonBarra} />
+      {botonBarra === 0 ? <PostList /> : <DetalleUsuario />} 
+    </>
+  )
+  
 }
+
 
 root.render(<App />);
