@@ -27,3 +27,8 @@
     font-weight: bold;
     font-size: 1.1em;
 }
+
+.spinner-border{
+    width: 5rem; 
+    height: 5rem;
+}
