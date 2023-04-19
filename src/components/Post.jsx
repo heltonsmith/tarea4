@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import '../assets/css/post.css'
 
-function Post({id, us, img, texto, comm}) {
+function Post({fecha, hora, us, img, texto, comm}) {
     const [like, setLike] = useState(0)
 
     const megusta = (ev) => {
@@ -18,7 +18,7 @@ function Post({id, us, img, texto, comm}) {
                     <div className="row d-flex justify-content-between align-items-center">
                         <div className="col">
                             <p>
-                                <small className="text-body-tertiary hora">3mins ago - id/{id}</small>
+                                <small className="text-body-tertiary hora">{fecha} - {hora}</small>
                             </p>
                         </div>
                         <div className="col-auto">

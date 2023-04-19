@@ -28,7 +28,7 @@ function PostList() {
   const postFiltrados = busqueda
     ? posts.filter(
         (post) => 
-          post.texto
+          post.summary
           .toLowerCase()
           .includes(busqueda)
       )
@@ -54,11 +54,12 @@ function PostList() {
           .map((post, i) => (
             <Post 
             key={i} 
-            id={post.id}
-            us={post.us}
-            img={post.img}
-            texto={post.texto}
-            comm={post.comm}
+            fecha={post.airdate}
+            hora={post.airtime}
+            us={post.name}
+            img={post.image.medium}
+            texto={post.summary}
+            comm={post.id}
             />
           ))
         }
