@@ -1,4 +1,3 @@
-
 import axios from "axios"
 
 export const token = localStorage.getItem("token")
@@ -19,7 +18,6 @@ export function getLogin(user, pass){
     })
     .catch((error) => {
         return error
-    });
+    })
     
-
 }

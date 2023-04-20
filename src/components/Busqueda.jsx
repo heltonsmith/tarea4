@@ -1,10 +1,9 @@
-
-import '../assets/css/busqueda.css';
+import '../assets/css/busqueda.css'
 
 function Busqueda({cambiarBusqueda}) {
 
     const cambiarTexto = (event) => {
-      cambiarBusqueda(event.target.value);
+      cambiarBusqueda(event.target.value)
     }
 
     return (
@@ -17,9 +16,9 @@ function Busqueda({cambiarBusqueda}) {
           onChange={cambiarTexto}
         />
       </div>
-    );
+    )
 
 }
   
-export default Busqueda;
+export default Busqueda
   

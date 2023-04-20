@@ -1,9 +1,8 @@
-
-import { useState } from 'react';
+import { useState } from 'react'
 import '../assets/css/post.css'
 
-function Post({fecha, hora, us, img, texto, comm}) {
-    const [like, setLike] = useState(0)
+function Post({fecha, nombre, us, img, texto, comm, likes}) {
+    const [like, setLike] = useState(likes)
 
     const megusta = (ev) => {
         console.log('ha hecho click ' + like)
@@ -18,7 +17,7 @@ function Post({fecha, hora, us, img, texto, comm}) {
                     <div className="row d-flex justify-content-between align-items-center">
                         <div className="col">
                             <p>
-                                <small className="text-body-tertiary hora">{fecha} - {hora}</small>
+                                <small className="text-body-tertiary hora">{fecha} <br /> {nombre}</small>
                             </p>
                         </div>
                         <div className="col-auto">
@@ -42,7 +41,7 @@ function Post({fecha, hora, us, img, texto, comm}) {
                 </div>
             </div>
         </div>
-    );
+    )
 }
   
-export default Post;
+export default Post

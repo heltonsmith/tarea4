@@ -1,6 +1,6 @@
-import '../assets/css/detalle.css';
+import '../assets/css/detalle.css'
 import profile from "../json/profile.json"
-import { usernameid } from '../services/LoginServices';
+import { usernameid } from '../services/LoginServices'
 
 function DetalleUsuario({cerrarSession}) {
 
@@ -15,9 +15,9 @@ function DetalleUsuario({cerrarSession}) {
       <p className='container'>{profile.bio}</p>
       <button className='btn btn-primary mt-3' onClick={cerrar}>Cerrar Sessión</button>
     </div>
-  );
+  )
 
 }
   
-export default DetalleUsuario;
+export default DetalleUsuario
   

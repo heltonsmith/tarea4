@@ -1,17 +1,17 @@
-import '../assets/css/login.css';
+import '../assets/css/login.css'
 
-import { useState } from "react";
-import { getLogin } from "../services/LoginServices";
+import { useState } from "react"
+import { getLogin } from "../services/LoginServices"
 
 function Login({ validarLogin }) {
 
-  const [loading, setLoading] = useState(false);
-  const [incorrecto, setIncorrecto] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [incorrecto, setIncorrecto] = useState(false)
 
   const imprimirLogin = () => {
 
-    const email = document.getElementById("txtEmail").value;
-    const password = document.getElementById("txtPassword").value;
+    const email = document.getElementById("txtEmail").value
+    const password = document.getElementById("txtPassword").value
 
     setLoading(true); // activar loading
 
@@ -23,8 +23,8 @@ function Login({ validarLogin }) {
     const timeoutPromise = new Promise((resolve, reject) => {
         setTimeout(() => {
             reject(new Error("La petición ha tardado demasiado tiempo - Intentelo de nuevo"));
-        }, 10000);
-    });
+        }, 10000)
+    })
 
     Promise.race([loginPromise, timeoutPromise])
     .then((x) => {
@@ -45,7 +45,7 @@ function Login({ validarLogin }) {
         console.error(error.message);
         setLoading(false); // ocultar loading
         //setIncorrecto(true);
-    });
+    })
 
   }
 
@@ -81,4 +81,4 @@ function Login({ validarLogin }) {
   )
 }
 
-export default Login;
+export default Login

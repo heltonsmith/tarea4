@@ -1,22 +1,24 @@
-
-import Post from "./Post";
-import Busqueda from './Busqueda';
-import { useEffect, useState } from "react";
-import { getPosts } from "../services/PostServices";
+import Post from "./Post"
+import Busqueda from './Busqueda'
+import { useEffect, useState } from "react"
+import { getPosts } from "../services/PostServices"
 
 function PostList() { 
   const [posts, setPosts] = useState([])
   const [cargando, setCargando] = useState(0)
   const [busqueda, setBusqueda] = useState("")
 
+
   useEffect(() => {
+
     getPosts().then(data => {
       setCargando(0)
-      setPosts(data)
+      setPosts(data.data)
     })
     .finally(() => {
-      setCargando(1);
+      setCargando(1)
     })
+    
   }, [])
 
   //funcion cuando estoy escribiendo cambia el estado
@@ -28,11 +30,11 @@ function PostList() {
   const postFiltrados = busqueda
     ? posts.filter(
         (post) => 
-          post.summary
+          post.text
           .toLowerCase()
           .includes(busqueda)
       )
-    : posts;
+    : posts
 
 
   if(cargando === 0){
@@ -54,12 +56,14 @@ function PostList() {
           .map((post, i) => (
             <Post 
             key={i} 
-            fecha={post.airdate}
-            hora={post.airtime}
-            us={post.name}
-            img={post.image.medium}
-            texto={post.summary}
-            comm={post.id}
+            fecha={post.createdAt}
+            nombre={post.author.name}
+            us={post.author.username}
+            //pongo una imagen por defecto en caso de que la api no contenga imágenes
+            img={post.image ? post.image : "https://keystoneacademic-res.cloudinary.com/image/upload/element/17/172146_172099_Logo3P_cuadrado_HQ.jpg"}
+            texto={post.text}
+            comm={post.comments.length}
+            likes={post.likes}
             />
           ))
         }
@@ -77,5 +81,5 @@ function PostList() {
 
 }
    
-export default PostList;
+export default PostList
   
