@@ -1,17 +1,28 @@
 
 import axios from "axios"
+import { token } from "./LoginServices"
 //import { token } from "./LoginServices"
 
 export function getPosts(){
 
     return axios
-    .get("https://globalmakermedia.blob.core.windows.net/core/misc/got.json", {
+    .get("https://three-points.herokuapp.com/api")
+    .then((res) => {
+        debugger
+        return res
+    })
+
+    /*
+    return axios
+    .get("https://three-points.herokuapp.com/api", {
         // headers: {
-        //     Authorization: `Bearer ${token}`
+        //      Authorization: `Bearer ${token}`
         // }
     })
     .then((res) => {
-        return res.data.episodes
+        debugger
+        return res
     })
+    */
     
 }

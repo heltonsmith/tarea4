@@ -18,12 +18,12 @@ function Login({ validarLogin }) {
     //username: john
     //password: P4ssW0rd!#
 
-    //espero dos segundos (solución parche para el problema de CORS que tiene la API)
+    //si la consulta tarda más de 10 segundo lanza un error de tiempo de espera
     const loginPromise = getLogin(email, password);
     const timeoutPromise = new Promise((resolve, reject) => {
         setTimeout(() => {
-            reject(new Error("La petición ha tardado demasiado tiempo (usuario inválido)"));
-        }, 3000);
+            reject(new Error("La petición ha tardado demasiado tiempo - Intentelo de nuevo"));
+        }, 10000);
     });
 
     Promise.race([loginPromise, timeoutPromise])
@@ -36,6 +36,7 @@ function Login({ validarLogin }) {
             validarLogin(true)
         } 
         else {
+            //error 401
             console.log("Usuario no encontrado")
             setIncorrecto(true)
         }
@@ -43,7 +44,7 @@ function Login({ validarLogin }) {
     .catch((error) => {
         console.error(error.message);
         setLoading(false); // ocultar loading
-        setIncorrecto(true);
+        //setIncorrecto(true);
     });
 
   }

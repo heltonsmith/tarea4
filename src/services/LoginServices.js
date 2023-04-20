@@ -2,6 +2,7 @@
 import axios from "axios"
 
 export const token = localStorage.getItem("token")
+export const usernameid = localStorage.getItem("usernameid")
 
 export function getLogin(user, pass){
 
@@ -13,6 +14,7 @@ export function getLogin(user, pass){
     })
     .then((res) => {
         localStorage.setItem("token", res.data.token)
+        localStorage.setItem("usernameid", user)
         return res
     })
     .catch((error) => {
