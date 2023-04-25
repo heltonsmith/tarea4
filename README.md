@@ -1,5 +1,5 @@
 # Tarea 4 - Front-End frameworks
-Tarea 3 - Ejercicio 4 - Aplicación React dinámica HTTP
+Ejercicio 4 – Aplicación React dinámica HTTP con React Router y Hooks
 
 ### Evidencia [Diseño Final]:
 <img src="https://raw.githubusercontent.com/heltonsmith/tarea4/main/src/assets/img/evidencia1.jpg" />
@@ -66,4 +66,3 @@ Tamaño dispositivos móviles .\
 
 
 ### Creado por Helton Bustos
-
