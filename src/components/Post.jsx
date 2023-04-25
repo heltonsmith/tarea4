@@ -1,12 +1,18 @@
 import { useState } from 'react'
 import '../assets/css/post.css'
+import { postLike } from '../services/PostServices'
 
-function Post({fecha, nombre, us, img, texto, comm, likes}) {
+function Post({fecha, nombre, us, img, texto, comm, likes, id}) {
     const [like, setLike] = useState(likes)
 
     const megusta = (ev) => {
         console.log('ha hecho click ' + like)
-        setLike(like + 1)
+        postLike(id)
+        //incrementa y decrementa cada vez que se da click en la interfaz y en la API
+        //se recomienda subir una bandera a la API para saber si el usuario le ha dado like a un post
+        //en caso contrario se pierde el estado del like al actualizar la interfaz, no basta con un codigo 204
+        //para no perder el estado del like
+        setLike(like === likes ? like+1 : like-1);
     }
 
     return (

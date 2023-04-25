@@ -5,6 +5,9 @@ export const usernameid = localStorage.getItem("usernameid")
 
 export function getLogin(user, pass){
 
+    localStorage.setItem("token", null)
+    localStorage.setItem("usernameid", null)
+
     return axios
     .post("https://three-points.herokuapp.com/api/login",
     {

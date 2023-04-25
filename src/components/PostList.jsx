@@ -64,6 +64,7 @@ function PostList() {
             texto={post.text}
             comm={post.comments.length}
             likes={post.likes}
+            id={post.id}
             />
           ))
         }

@@ -6,17 +6,13 @@ import PostList from './components/PostList'
 import DetalleUsuario from './components/DetalleUsuario'
 import Login from './components/Login'
 import { token } from './services/LoginServices'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 function App() {
 
-  const [botonBarra, setBotonBarra] = useState(0)
   const [loginOk, setLoginOk] = useState(token)
-
-  const cambiarBotonBarra = (x) => {
-    setBotonBarra(x)
-  }
 
   const validarLogin = (x) => {
     setLoginOk(x)
@@ -24,24 +20,27 @@ function App() {
 
   const cerrarSession = (x) => {
     setLoginOk(x)
-    localStorage.setItem("token", "")
-    localStorage.setItem("usernameid", "")
+    localStorage.removeItem("token");
+    localStorage.removeItem("usernameid");
   }
 
-  if(loginOk){
-    return (
-      <>
-        <Barra botonBarra={botonBarra} cambiarBotonBarra={cambiarBotonBarra} />
-        {botonBarra === 0 ? <PostList /> : <DetalleUsuario cerrarSession={cerrarSession} />} 
-      </>
-    )
-  }
-  else{
-    return (
-      <Login validarLogin={validarLogin} />
-    )
-  }
+
+  return (
+    <>
+      <Barra />
+      <Routes>
+          <Route path='/' element={loginOk ? <PostList /> : <Login validarLogin={validarLogin} />}/>
+          <Route path='/profile' element={loginOk ? <DetalleUsuario cerrarSession={cerrarSession} /> : <Login validarLogin={validarLogin} />}/>
+          <Route path='/login' element={!loginOk ? <Login validarLogin={validarLogin} /> : <PostList />}/>
+      </Routes>
+    </>
+  )
+
   
 }
 
-root.render(<App />)
+root.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+)

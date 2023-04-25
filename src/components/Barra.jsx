@@ -1,19 +1,24 @@
+import { Link } from 'react-router-dom'
 import '../assets/css/barra.css'
 
-function Barra({botonBarra, cambiarBotonBarra}) {
+function Barra() {
 
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container">
-        <span 
-          className="navbar-brand text-black marca"
-          onClick={() => cambiarBotonBarra(0)}> 
-          <i className="fa-solid fa-bolt"></i> three pics
-        </span>
-        <i 
-          className="fa-solid fa-circle-user fa-xl icono-user"
-          onClick={() => cambiarBotonBarra(1)}>
-        </i>
+        <Link className='nav-link' to="/">
+          <span 
+            className="navbar-brand text-black marca"
+           > 
+            <i className="fa-solid fa-bolt"></i> three pics
+          </span>
+        </Link>
+        <Link className='nav-link' to="/profile">
+          <i 
+            className="fa-solid fa-circle-user fa-xl icono-user"
+            >
+          </i>
+        </Link>
       </div>
     </nav>
   )
