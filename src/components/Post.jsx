@@ -18,7 +18,7 @@ function Post({fecha, nombre, us, img, texto, comm, likes, id}) {
     return (
         <div className="container mt-3">
             <div className="card mb-3">
-                <img src={img} className="card-img-top" alt="..." />
+                <img src="https://picsum.photos/id/22/500/500" className="card-img-top" alt="..." />
                 <div className="card-body">
                     <div className="row d-flex justify-content-between align-items-center">
                         <div className="col">
